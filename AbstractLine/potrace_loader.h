@@ -99,7 +99,7 @@ static potrace_state_t* Raster2Vector(const cv::Mat& input_img) {
   parameters->opticurve = 1;
   parameters->opttolerance = 0.2;
   parameters->turnpolicy = POTRACE_TURNPOLICY_MINORITY;
-  parameters->turdsize = 100;
+  parameters->turdsize = 10;
   parameters->alphamax = 1;
   //freed when program terminates (potrace_state_free)
   potrace_state_t* states = new potrace_state_t();
@@ -201,7 +201,7 @@ static void PlotCurve(cv::Mat* canvas,
 }
 
 static inline void ShowPath(potrace_path_t* my_path, cv::Mat* canvas) {
-  potrace_path_t *p, *q;
+  potrace_path_t *p;
   for (p = my_path; p; p = p->sibling) {
     // Show details.
     cout << "path: " << counter++ << ",\tarea: "
@@ -218,9 +218,8 @@ static inline void ShowPath(potrace_path_t* my_path, cv::Mat* canvas) {
     } else {
       cv::drawContours(*canvas, contours, -1, cv::Scalar(255, 255, 255), -1);
     }
-    for (q = p->childlist; q; q = q->sibling) {
-      ShowPath(q->childlist, canvas);
-    }
+    ShowPath(p->childlist, canvas);
+    cv::imshow("canvas", *canvas);
   }
 }
 

@@ -42,7 +42,7 @@ static inline cv::Mat ExecPotrace(const string& file_path) {
     return cv::Mat();
   }
   cv::imwrite(bmp_path, input_img);
-  string potrace_arg = "/usr/local/bin/potrace -g -z minority -t 100.000000 -a 1.300000 -O \
+  string potrace_arg = "/usr/local/bin/potrace -g -z minority -t 10.000000 -a 1.300000 -O \
   0.200000 -u 10.000000 -k 0.500000 -o" + pgm_path + " " + bmp_path;
   system(potrace_arg.c_str());
   cv::Mat output_img = cv::imread(pgm_path, 0);
@@ -54,7 +54,7 @@ static inline cv::Mat ExecPotrace(const cv::Mat& input_img) {
   string bmp_path = kTempFolder + "temp_potrace.bmp";
   string pgm_path = kTempFolder + "temp_potrace.pgm";
   cv::imwrite(bmp_path, input_img);
-  string potrace_arg = "/usr/local/bin/potrace -g -z minority -t 100.000000 -a 1.300000 -O \
+  string potrace_arg = "/usr/local/bin/potrace -g -z minority -t 10.000000 -a 1.300000 -O \
   0.200000 -u 10.000000 -k 0.500000 -o" + pgm_path + " " + bmp_path;
   system(potrace_arg.c_str());
   cv::Mat output_img = cv::imread(pgm_path, 0);
@@ -66,7 +66,7 @@ static inline void ExecPotraceAndSaveSVG(const cv::Mat& input_img,
                                          const string& svg_path) {
   string bmp_path = kTempFolder + "temp_potrace.bmp";
   cv::imwrite(bmp_path, input_img);
-  string potrace_arg = "/usr/local/bin/potrace -s -z minority -t 100.000000 -a 1.300000 -O \
+  string potrace_arg = "/usr/local/bin/potrace -s -z minority -t 10.000000 -a 1.300000 -O \
   0.200000 -u 10.000000 -k 0.500000 -o" + svg_path + " " + bmp_path;
   system(potrace_arg.c_str());
 }
@@ -82,7 +82,7 @@ static inline void ExecPotraceAndSaveSVG(const string& file_path,
     return;
   }
   cv::imwrite(bmp_path, input_img);
-  string potrace_arg = "/usr/local/bin/potrace -s -z minority -t 100.000000 -a 1.300000 -O \
+  string potrace_arg = "/usr/local/bin/potrace -s -z minority -t 10.000000 -a 1.300000 -O \
   0.200000 -u 10.000000 -k 0.500000 -o" + svg_path + " " + bmp_path;
   system(potrace_arg.c_str());
 }

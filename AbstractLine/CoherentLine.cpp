@@ -88,8 +88,8 @@ void CoherentLine::GetEdegTangentFlow() {
     }
   }
   // What to show it?
-  // VisualizeByLIC(etf_);
-  // VisualizeByArrow(etf_);
+//  VisualizeByLIC(etf_);
+//  VisualizeByArrow(etf_);
 }
 
 void CoherentLine::GetDogEdge() {
@@ -111,7 +111,7 @@ void CoherentLine::GetDogEdge() {
       if (diff > 0) {
         dog_edge_.at<uchar>(r, c) = 255;
       } else {
-        dog_edge_.at<uchar>(r, c) = static_cast<uchar>(255 * (1 + tanhf(diff * phi)));
+        dog_edge_.at<uchar>(r, c) = 0; //static_cast<uchar>(255 * (1 + tanhf(diff * phi)));
       }
     }
   }
@@ -414,8 +414,8 @@ void CoherentLine::VisualizeByArrow(const cv::Mat &vf) {
   cv::Mat show_filed = image_.clone();
   float angle, dx, dy, mag;
   cv::Point2d p, q;
-  for (int r = 0; r < rows_; r += 20) {
-    for (int c = 0; c < cols_; c += 20) {
+  for (int r = 0; r < rows_; r += 10) {
+    for (int c = 0; c < cols_; c += 10) {
       dx = vf.at<cv::Vec3f>(r, c)[0];
       dy = vf.at<cv::Vec3f>(r, c)[1];
       mag = vf.at<cv::Vec3f>(r, c)[2];

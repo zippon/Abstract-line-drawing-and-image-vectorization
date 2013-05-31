@@ -16,7 +16,9 @@ int main(int argc, const char * argv[])
 
   // insert code here...
   // string img_file = "/Users/WU/Pictures/others/lena.jpg";
-  string img_file = "/Users/WU/Pictures/others/bundle_origin.jpg";
+  string img_file = "/Users/WU/Pictures/others/meguro.jpg";
+  string svg_file = "/Users/WU/Pictures/others/meguro.svg";
+  string line_file = "/Users/WU/Pictures/others/meguro_line.jpg";
   CoherentLine cl(img_file);
   cv::Mat dog_edge = cl.dog_edge();
   cv::imshow("dog", dog_edge);
@@ -24,6 +26,8 @@ int main(int argc, const char * argv[])
   cv::Mat fdog_edge = cl.fdog_edge();
   cv::imshow("fdog", fdog_edge);
   cv::waitKey();
+  cv::imwrite(line_file, fdog_edge);
+  ExecPotraceAndSaveSVG(fdog_edge, svg_file);
   cv::Mat vec_edge = ExecPotrace(fdog_edge);
   cv::imshow("vectorization", vec_edge);
   cv::waitKey();
